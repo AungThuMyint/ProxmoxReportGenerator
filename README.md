@@ -129,7 +129,3 @@ The PDF Includes:
 </table>
 
 ---
-
-## License
-
-Add your preferred license (e.g., MIT/Apache‑2.0) in `LICENSE`. If unspecified, all rights reserved by default.
