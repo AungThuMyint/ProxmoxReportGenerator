@@ -1,6 +1,6 @@
 # Proxmox Report Generator
 
-Generate a clean, printable PDF that summarizes your **Proxmox VE** cluster and each node, Cluster health, nodes & resources, VM/LXC lists + utilization, storage, and detailed network tables (Bridges, Bonds, Standard Interfaces). With optional SSH, the script discovers NIC/Bond link speeds.
+Generate a clean, printable PDF that summarizes your Proxmox VE cluster and each node, Cluster health, nodes & resources, VM/LXC lists + utilization, storage, and detailed network tables (Bridges, Bonds, Standard Interfaces). With optional SSH, the script discovers NIC/Bond link speeds.
 
 ---
 
