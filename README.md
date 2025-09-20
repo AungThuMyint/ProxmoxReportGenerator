@@ -42,7 +42,7 @@ pip install requests urllib3 fpdf2 paramiko
 ## Usage
 
 ```bash
-python ProxmoxReportGenerator.py --host <pve-host> --logo <logo.png> [auth flags] [ssh flags] [other flags]
+ProxmoxReportGenerator.py --host <pve-host> --logo <logo.png> [auth flags] [ssh flags] [other flags]
 ```
 
 ### Required
@@ -81,17 +81,17 @@ python ProxmoxReportGenerator.py --host <pve-host> --logo <logo.png> [auth flags
 
 **Password Login + SSH (Recommended)**
 ```bash
-python ProxmoxReportGenerator.py --host pve.example.com --logo ./company.png --username root@pam --password '••••••' --ssh-user root --ssh-password '••••••'
+ProxmoxReportGenerator.py --host pve.example.com --logo ./company.png --username root@pam --password '••••••' --ssh-user root --ssh-password '••••••'
 ```
 
 **API Token + SSH Key**
 ```bash
-python ProxmoxReportGenerator.py --host pve.example.com --logo ./company.png --token-user root@pam --token-id myreport --token-secret 'pve-xxxxx-xxxxx' --ssh-user root --ssh-key ~/.ssh/id_rsa --no-insecure
+ProxmoxReportGenerator.py --host pve.example.com --logo ./company.png --token-user root@pam --token-id myreport --token-secret 'pve-xxxxx-xxxxx' --ssh-user root --ssh-key ~/.ssh/id_rsa --no-insecure
 ```
 
 **Self‑Signed Lab**
 ```bash
-python ProxmoxReportGenerator.py --host 10.0.0.20 --logo ./lab.png --username root@pam --password 'labpass' --ssh-user root --ssh-password 'labpass' --insecure
+ProxmoxReportGenerator.py --host 10.0.0.20 --logo ./lab.png --username root@pam --password 'labpass' --ssh-user root --ssh-password 'labpass' --insecure
 ```
 
 ---
