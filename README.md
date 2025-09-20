@@ -65,7 +65,7 @@ ProxmoxReportGenerator.py --host <pve-host> --logo <logo.png> [auth flags] [ssh 
 ```bash
 --ssh-user <user> [--ssh-password <pass> | --ssh-key <path>] [--ssh-port 22] [--ssh-timeout 8]
 ```
-> Used to read NIC speeds (via `ethtool`/`/sys`) and improve ARP/IP lookups. If SSH fails, the script falls back to API values.
+> Used to read NIC speeds `ethtool` and `/sys` and improve ARP/IP lookups. If SSH fails, the script falls back to API values.
 
 ### TLS
 - `--insecure` – **Disable** Certificate Verification  
@@ -81,17 +81,12 @@ ProxmoxReportGenerator.py --host <pve-host> --logo <logo.png> [auth flags] [ssh 
 
 **Password Login + SSH (Recommended)**
 ```bash
-ProxmoxReportGenerator.py --host pve.example.com --logo ./company.png --username root@pam --password '••••••' --ssh-user root --ssh-password '••••••'
+ProxmoxReportGenerator.py --host pve.example.com --logo ./company.png --username root@pam --password 'xxxxx' --ssh-user root --ssh-password 'xxxxx'
 ```
 
 **API Token + SSH Key**
 ```bash
 ProxmoxReportGenerator.py --host pve.example.com --logo ./company.png --token-user root@pam --token-id myreport --token-secret 'pve-xxxxx-xxxxx' --ssh-user root --ssh-key ~/.ssh/id_rsa --no-insecure
-```
-
-**Self‑Signed Lab**
-```bash
-ProxmoxReportGenerator.py --host 10.0.0.20 --logo ./lab.png --username root@pam --password 'labpass' --ssh-user root --ssh-password 'labpass' --insecure
 ```
 
 ---
