@@ -4,7 +4,7 @@ Generate a clean, printable PDF that summarizes your Proxmox VE cluster and each
 
 ---
 
-## Highlights
+## 💡 Highlights
 
 - **One‑Click PDF**: Overview Proxmox VE Cluster
 - **Cluster Overview**: Status, Quorum, Proxmox VE Versions
@@ -22,7 +22,7 @@ Generate a clean, printable PDF that summarizes your Proxmox VE cluster and each
 
 ---
 
-## Requirements
+## 📦 Requirements
 
 - Python **3.8+**
 - Require Packages List
@@ -31,7 +31,7 @@ Generate a clean, printable PDF that summarizes your Proxmox VE cluster and each
   - `fpdf2`
   - `paramiko`
 
-Install Dependencies:
+Install Dependencies Command
 
 ```bash
 pip install requests urllib3 fpdf2 paramiko
@@ -39,7 +39,7 @@ pip install requests urllib3 fpdf2 paramiko
 
 ---
 
-## Usage
+## 📝 Usage
 ```bash
 Usage: ProxmoxReportGeneratorV12.py [-h] --host HOST [--outfile OUTFILE] [--debug] [--insecure]
                                     [--no-insecure] [--username USERNAME] [--password PASSWORD] [--otp OTP]
@@ -72,11 +72,11 @@ Options:
   --ssh-port SSH_PORT                  SSH port (Default: 22)
   --ssh-timeout SSH_TIMEOUT            SSH connection timeout in seconds (Default: 8)
 ```
-## Usage Command Example (With SSH Username & SSH Password)
+## 📝 Usage Command Example (With SSH Username & SSH Password)
 ```bash
 ProxmoxReportGenerator.py --host pve01.syscloud.local --insecure --username root@pam --password "xxxxx" --logo "C:\Proxmox.png" --generateusername "Aung Thu Myint" --ssh-user root --ssh-password "xxxxx"
 ```
-## Output PDF File
+## 🎯 Output PDF File
 
 The PDF Includes:
 
@@ -88,11 +88,10 @@ The PDF Includes:
 - **Shared/Local Storage**
 - **Network Overview**
 
-## Proxmox Generate PDF Sample
+## 📂 Proxmox Generate PDF Sample
 
 <p>
-  📙 <strong>Sample Proxmox PDF Report</strong>
-  <a href="https://github.com/AungThuMyint/ProxmoxReportGenerator/blob/main/Report/Proxmox_Summary.pdf">[View]</a>
+  <strong>Sample Proxmox <a href="https://github.com/AungThuMyint/ProxmoxReportGenerator/blob/main/Report/Proxmox_Summary.pdf">PDF</a> Report</strong>
 </p>
 
 <table>
