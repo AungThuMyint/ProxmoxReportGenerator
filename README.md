@@ -81,12 +81,12 @@ ProxmoxReportGenerator.py --host <pve-host> --logo <logo.png> [auth flags] [ssh 
 
 **Password Login + SSH (Recommended)**
 ```bash
-ProxmoxReportGenerator.py --host pve.example.com --logo ./company.png --username root@pam --password 'xxxxx' --ssh-user root --ssh-password 'xxxxx'
+ProxmoxReportGenerator.py --host pve01.syscloud.local --insecure --username root@pam --password 'xxxxx' --logo "C:\ProxmoxLogo.png" --generateusername "Aung Thu Myint" --ssh-user root --ssh-password 'xxxxx'
 ```
 
 **API Token + SSH Key**
 ```bash
-ProxmoxReportGenerator.py --host pve.example.com --logo ./company.png --token-user root@pam --token-id myreport --token-secret 'pve-xxxxx-xxxxx' --ssh-user root --ssh-key ~/.ssh/id_rsa --no-insecure
+ProxmoxReportGenerator.py --host pve01.syscloud.local --token-user root@pam --token-id 'xxxxx' --token-secret 'xxxxx-xxxxx-xxxxx' --logo "C:\ProxmoxLogo.png" --generateusername "Aung Thu Myint" --ssh-user root --ssh-key ~/.ssh/id_rsa --no-insecure
 ```
 
 ---
@@ -106,8 +106,8 @@ The PDF Includes:
 ## Proxmox Generate PDF Sample
 
 <p>
-  📄 <strong>Sample Proxmox PDF Report</strong>
-  <a href="https://github.com/AungThuMyint/ProxmoxReportGenerator/blob/main/Report/Proxmox_Summary.pdf">View</a>
+  📙 <strong>Sample Proxmox PDF Report</strong>
+  <a href="https://github.com/AungThuMyint/ProxmoxReportGenerator/blob/main/Report/Proxmox_Summary.pdf">[View]</a>
 </p>
 
 <table>
