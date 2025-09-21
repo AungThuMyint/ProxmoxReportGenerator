@@ -41,7 +41,7 @@ pip install requests urllib3 fpdf2 paramiko
 
 ## 📝 Usage
 ```bash
-Usage: ProxmoxReportGeneratorV12.py [-h] --host HOST [--outfile OUTFILE] [--debug] [--insecure]
+Usage: ProxmoxReportGenerator.py [-h] --host HOST [--outfile OUTFILE] [--debug] [--insecure]
                                     [--no-insecure] [--username USERNAME] [--password PASSWORD] [--otp OTP]
                                     [--token-user TOKEN_USER] [--token-id TOKEN_ID]
                                     [--token-secret TOKEN_SECRET] --logo LOGO
