@@ -221,7 +221,7 @@ def ssh_lookup_ips_by_macs(host: str, user: str, password: Optional[str], keyfil
         return result
 
     try:
-        import paramiko  # type: ignore
+        import paramiko
     except Exception:
         return result
 
@@ -509,7 +509,7 @@ class ReportPDF(FPDF):
 
         header_h = 8
         self.set_font("Helvetica","B",10)
-        self.set_fill_color(229,112,0)  # #E57000
+        self.set_fill_color(229,112,0)
         self.set_text_color(255,255,255)
         for i, h in enumerate(headers):
             self.cell(widths[i], header_h, self._fit_text(h, widths[i]), border=1, align="C", fill=True)
@@ -588,7 +588,6 @@ class ReportPDF(FPDF):
                 ips   = g.get("ips") if isinstance(g, dict) else None
                 kind  = (g.get("kind") if isinstance(g, dict) else None) or None
                 vmid  = (str(g.get("vmid")) if isinstance(g, dict) and g.get("vmid") is not None else None)
-                # Parse if not provided
                 if (not kind or not vmid) and gname:
                     m = re.match(r"^(VM|CT)\s+(\d+)\s*-\s*(.+)$", gname, re.IGNORECASE)
                     if m:
@@ -902,7 +901,7 @@ def shape_bridges(networks: List[Dict[str, Any]]) -> List[List[str]]:
 def shape_bonds(networks: List[Dict[str, Any]], ext_speed_map: Optional[Dict[str,float]] = None) -> List[List[str]]:
     speed_map = _extract_iface_speed_map_from_networks(networks)
     if ext_speed_map:
-        speed_map.update(ext_speed_map)  # SSH override
+        speed_map.update(ext_speed_map)
     rows = []
     bond_objs: Dict[str, Dict[str, Any]] = {}
     for n in networks:
@@ -997,7 +996,7 @@ def _resolve_vlan_speed(vlan_name: str, net_map: Dict[str,float], networks: List
     if "." not in vlan_name:
         return _resolve_lane_speed(vlan_name, net_map, networks)
 
-    base = vlan_name.split(".", 1)[0]  # e.g., vmbr1
+    base = vlan_name.split(".", 1)[0]
 
     types: Dict[str, str] = {}
     bonds: Dict[str, List[str]] = {}
@@ -1056,7 +1055,7 @@ def _resolve_vlan_speed(vlan_name: str, net_map: Dict[str,float], networks: List
     if "." not in vlan_name:
         return _resolve_lane_speed(vlan_name, net_map, networks)
 
-    base = vlan_name.split(".", 1)[0]  # e.g., vmbr1
+    base = vlan_name.split(".", 1)[0]
 
     types: Dict[str, str] = {}
     bridges: Dict[str, List[str]] = {}
@@ -1169,32 +1168,39 @@ def get_lxc_ips_from_cfg(cfg: Dict[str, Any]) -> List[str]:
 class PrettyArgumentParser(argparse.ArgumentParser):
     def format_usage(self):
         return super().format_usage().replace("usage:", "Usage:", 1)
+
     def format_help(self):
-        return super().format_help().replace("usage:", "Usage:", 1)
+        text = super().format_help()
+        text = text.replace("usage:", "Usage:", 1)
+        text = text.replace("options:", "Options:", 1)
+        return text
+
     def error(self, message):
         self.print_usage(sys.stderr)
         self.exit(2, "Error! Arguments are required.\n")
 
 def main():
-    p = PrettyArgumentParser(description="Generate a Proxmox Cluster & Nodes summary PDF.")
-    p.add_argument("--host", required=True)
-    p.add_argument("--outfile", default=None)
-    p.add_argument("--debug", action="store_true")
-    p.add_argument("--insecure", action="store_true")
-    p.add_argument("--no-insecure", dest="no_insecure", action="store_true")
-    p.add_argument("--username")
-    p.add_argument("--password")
-    p.add_argument("--otp")
-    p.add_argument("--token-user")
-    p.add_argument("--token-id")
-    p.add_argument("--token-secret")
-    p.add_argument("--logo", required=True, help="Path to a PNG/JPG logo to place in the header")
-    p.add_argument("--generateusername")
+    p = PrettyArgumentParser(description="Generate a Proxmox Cluster & Nodes summary PDF.", add_help=False,formatter_class=lambda prog: argparse.HelpFormatter(prog, max_help_position=40, width=110))
+    p.add_argument("-h", "--help",action="help",help="Show this help message and exit")
+    p.add_argument("--host", required=True, help="Add your Proxmox VE domain or IP address")
+    p.add_argument("--outfile", default=None, help="Define your output PDF file name (e.g., report.pdf)")
+    p.add_argument("--debug", action="store_true", help="Enable debug logging to troubleshoot PDF generation")
+    p.add_argument("--insecure", action="store_true", help="Disable TLS/SSL verification (not recommended)")
+    p.add_argument("--no-insecure", dest="no_insecure", action="store_true", help="Force TLS/SSL verification")
+    p.add_argument("--username", help="Proxmox VE username (e.g., root@pam)")
+    p.add_argument("--password", help="Proxmox VE user password")
+    p.add_argument("--otp", help="Two-factor authentication code if required")
+    p.add_argument("--token-user", help="API Token user (e.g., root@pam)")
+    p.add_argument("--token-id", help="API Token ID")
+    p.add_argument("--token-secret", help="API Token secret")
+    p.add_argument("--logo", required=True, help="Path to a PNG/JPG logo to place in the PDF header")
+    p.add_argument("--generateusername", help="Name to display as 'Generated by' in the PDF footer")
     p.add_argument("--ssh-user", help="SSH username for nodes (for NIC speeds / IP ARP fallback)")
     p.add_argument("--ssh-password", help="SSH password")
     p.add_argument("--ssh-key", help="SSH private key path")
-    p.add_argument("--ssh-port", type=int, default=22)
-    p.add_argument("--ssh-timeout", type=int, default=8)
+    p.add_argument("--ssh-port", type=int, default=22, help="SSH port (Default: 22)")
+    p.add_argument("--ssh-timeout", type=int, default=8, help="SSH connection timeout in seconds (Default: 8)")
+
     args = p.parse_args()
 
     verify = VERIFY_SSL_DEFAULT
@@ -1251,7 +1257,6 @@ def main():
             root_used  = safe_get(ns, "rootfs", "used",  default=0) or 0
             uptime = safe_get(ns, "uptime", default=0) or 0
             hostname = ns.get("hostname") or node
-
             cpuinfo = safe_get(ns, "cpuinfo", default={}) or {}
             cpus = cpuinfo.get("cpus")
             if not cpus:
